@@ -1,20 +1,28 @@
-import React from "react";
-import { Button, Card, Container, Nav, Navbar } from "react-bootstrap";
-function Header() {
+import React, { useContext } from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import HeaderText from "./HeaderText";
+import { Link } from "react-router-dom";
+import CartContext from "../store/cart-context";
+function Header({onOpen}) {
+  const cartCtx=useContext(CartContext);
   return (
-    <Navbar variant="dark" fixed="top" className="bg-dark border border-bottom light" >
+    <>
+    
+    <Navbar variant="dark" fixed="top" className="bg-dark" >
         <Container className="w-25">
-            <Nav.Link variant="light" className=" text-white rounded px-3">Home</Nav.Link>
-            <Nav.Link variant="light"  className=" text-white rounded px-3">Store</Nav.Link>
-            <Nav.Link variant="light"  className=" text-white rounded px-3">About</Nav.Link>
+            <Nav.Link as={Link} to={'/'} variant="light" className=" text-white rounded px-3">Home</Nav.Link>
+            <Nav.Link as={Link} to={'/store'} variant="light"  className=" text-white rounded px-3">Store</Nav.Link>
+            <Nav.Link as={Link} to={'/about'} variant="light"  className=" text-white rounded px-3">About</Nav.Link>
 
         </Container>
 
-        <Button variant="outline-light" className="border border-info rounded">
-          🛒 Cart <span className="ms-1">0</span>
+        <Button variant="outline-light" className="border border-info rounded" onClick={onOpen}>
+          🛒 Cart <span className="ms-1">{cartCtx.items.length}</span>
         </Button>
             
     </Navbar>
+    <HeaderText/>
+    </>
   )
 }
 
