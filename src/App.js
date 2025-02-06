@@ -7,6 +7,7 @@ import Home from "./Pages/Home";    // Create this page
 import CartToast from "./components/CartToster";
 import CartTopUp from "./Pages/CartTopUp";
 import { useState } from "react";
+import ContactUs from "./Pages/ContactUs";
 
 function App() {
   const [showCart,setShowcart]=useState(false);
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store/>} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact-us" element={<ContactUs />} />
         </Routes>
         <Footer />
 <CartToast/>
