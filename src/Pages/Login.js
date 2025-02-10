@@ -7,7 +7,7 @@ function Login() {
     const [password,setPassword]=useState('');
     const [isLoading,setIsLoading]=useState(false);
     const navigate=useNavigate();
-    const apiKey='';
+    const apiKey='?key=AIzaSyD-uI-eMLHi5SwjimfEymOO5b_8lh2Y7Mk';
 const baseUrl=`https://identitytoolkit.googleapis.com/v1/accounts:`
     const handleSubmit=async (e)=>{
         try {
