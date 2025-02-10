@@ -6,6 +6,7 @@ import CartContext from "../store/cart-context";
 function Header({onOpen}) {
   const cartCtx=useContext(CartContext);
   const location = useLocation(); // Get the current path
+  const userData=JSON.parse(localStorage.getItem('ecom-user'));
 
   return (
     <>
@@ -14,11 +15,14 @@ function Header({onOpen}) {
         <Container style={{width:'30%'}}>
           <Nav>
 
-            <Nav.Link as={Link} to={'/'} variant="light" className={` rounded px-3 ${location.pathname.includes("/home" )? "text-white" : "text-secondary"}`}>Home</Nav.Link>
+           {userData? <>
+           <Nav.Link as={Link} to={'/'} variant="light" className={` rounded px-3 ${location.pathname.includes("/home" )? "text-white" : "text-secondary"}`}>Home</Nav.Link>
             <Nav.Link as={Link} to={'/store'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/store" )? "text-white" : "text-secondary"}`}>Store</Nav.Link>
             <Nav.Link as={Link} to={'/about'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/about" )? "text-white" : "text-secondary"}`}>About</Nav.Link>
             <Nav.Link as={Link} to={'/contact-us'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/contact-us") ? "text-white" : "text-secondary"}`}>Contact Us</Nav.Link>
-            <Nav.Link as={Link} to={'/login'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/login") ? "text-white" : "text-secondary"}`}>Login</Nav.Link>
+           </>
+              :
+            <Nav.Link as={Link} to={'/login'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/login") ? "text-white" : "text-secondary"}`}>Login</Nav.Link>}
           </Nav>
 
         </Container>

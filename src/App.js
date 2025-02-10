@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes,Redirect, Navigate, Outlet } from "react-router-dom";
+import {  BrowserRouter, Route, Routes,Redirect, Navigate, Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import About from "./Pages/About";  // Create this page
@@ -13,35 +13,48 @@ import { Container } from "react-bootstrap";
 import NotFoundPage from "./Pages/NotFoundPage";
 import Login from "./Pages/Login";
 
+const ProtectedRoute=({isLogged})=>{
+  if (isLogged) {
+   return  <Outlet/>
+  } else {
+   return <Navigate to="/login" replace />;
+  }
+}
 function App() {
   const [showCart,setShowcart]=useState(false);
+  const userData=JSON.parse(localStorage.getItem('ecom-user'));
 
   return (
-    <Router>
+    <BrowserRouter>
       <div fluid>
         <header>
-
-        <Header onOpen={()=>setShowcart(true)} />
+{!!userData?.idToken&& 
+        <Header onOpen={()=>setShowcart(true)} />}
         </header>
         <main style={{height:'100vh'}}>
 
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace/>}  />
             {/* Define your routes */}
+            <Route element={<ProtectedRoute isLogged={!!userData?.idToken}/>}>
           <Route path='/home' element={<Home/>}/>
           <Route path="/store" element={<Store/>} />
           <Route path="/store/:title" element={<ProductDetails/>} />
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />
+            </Route>
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        {!!userData?.idToken &&
+        
         <Footer />
+        }
 <CartToast/>
 {showCart && <CartTopUp onClose={()=>setShowcart(false)}/>}
         </main>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

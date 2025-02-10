@@ -35,6 +35,7 @@ const baseUrl=`https://identitytoolkit.googleapis.com/v1/accounts:`
         }
         localStorage.setItem('ecom-user',JSON.stringify(jsonReponse));
         navigate('/store',{replace:true})
+        window.location.reload()
         } catch (error) {
             console.error('Error from the handle Submit',error);
             alert(error)
