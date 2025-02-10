@@ -9,6 +9,9 @@ import CartTopUp from "./Pages/CartTopUp";
 import { useState } from "react";
 import ContactUs from "./Pages/ContactUs";
 import ProductDetails from "./Pages/ProductDetails";
+import { Container } from "react-bootstrap";
+import NotFoundPage from "./Pages/NotFoundPage";
+import Login from "./Pages/Login";
 
 function App() {
   const [showCart,setShowcart]=useState(false);
@@ -30,6 +33,8 @@ function App() {
           <Route path="/store/:title" element={<ProductDetails/>} />
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
 <CartToast/>

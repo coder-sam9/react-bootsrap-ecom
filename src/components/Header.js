@@ -11,13 +11,14 @@ function Header({onOpen}) {
     <>
     
     <Navbar variant="dark" fixed="top" className="bg-dark" >
-        <Container className="w-25">
+        <Container style={{width:'30%'}}>
           <Nav>
 
-            <Nav.Link as={Link} to={'/'} variant="light" className={` rounded px-3 ${location.pathname === "/" ? "text-white" : "text-secondary"}`}>Home</Nav.Link>
-            <Nav.Link as={Link} to={'/store'} variant="light"  className={` rounded px-3 ${location.pathname === "/store" ? "text-white" : "text-secondary"}`}>Store</Nav.Link>
-            <Nav.Link as={Link} to={'/about'} variant="light"  className={` rounded px-3 ${location.pathname === "/about" ? "text-white" : "text-secondary"}`}>About</Nav.Link>
-            <Nav.Link as={Link} to={'/contact-us'} variant="light"  className={` rounded px-3 ${location.pathname === "/contact-us" ? "text-white" : "text-secondary"}`}>Contact Us</Nav.Link>
+            <Nav.Link as={Link} to={'/'} variant="light" className={` rounded px-3 ${location.pathname.includes("/home" )? "text-white" : "text-secondary"}`}>Home</Nav.Link>
+            <Nav.Link as={Link} to={'/store'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/store" )? "text-white" : "text-secondary"}`}>Store</Nav.Link>
+            <Nav.Link as={Link} to={'/about'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/about" )? "text-white" : "text-secondary"}`}>About</Nav.Link>
+            <Nav.Link as={Link} to={'/contact-us'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/contact-us") ? "text-white" : "text-secondary"}`}>Contact Us</Nav.Link>
+            <Nav.Link as={Link} to={'/login'} variant="light"  className={` rounded px-3 ${location.pathname.includes("/login") ? "text-white" : "text-secondary"}`}>Login</Nav.Link>
           </Nav>
 
         </Container>
